@@ -10,7 +10,7 @@ class ApiService {
   }
 
   static Future<Response> getData({
-    required String url,
+    required String endPoint,
     Map<String, dynamic>? query,
     String lang = 'en',
     //  String? token,
@@ -21,7 +21,7 @@ class ApiService {
       // "Authorization":token!,
     };
     return await dio.get(
-      url,
+      endPoint,
       queryParameters: query,
     );
   }
