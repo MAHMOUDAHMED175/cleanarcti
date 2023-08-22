@@ -13,10 +13,10 @@ class FeaturedBooksListViewLoadingIndicator extends StatelessWidget {
         height: MediaQuery.of(context).size.height * .3,
         child: ListView.builder(
           itemCount: 15,
-          scrollDirection: Axis.horizontal,
+          scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
             return const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8),
+              padding: EdgeInsets.all( 20),
               child: CustomBookImageLoadingIndicator(),
             );
           },

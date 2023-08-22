@@ -1,30 +1,33 @@
 import 'package:dio/dio.dart';
 
 class ApiService {
-  static late Dio dio;
-  static init() {
-    dio = Dio(BaseOptions(
-      baseUrl: 'https://www.googleapis.com/books/v1/',
-      receiveDataWhenStatusError: true,
-    ));
-  }
+  final Dio _dio;
 
-  static Future<Response> getData({
-    required String endPoint,
-    Map<String, dynamic>? query,
-    String lang = 'en',
-    //  String? token,
-  }) async {
-    dio.options.headers = {
-      "Content-Type": "application/json",
-      "lang": lang,
-      // "Authorization":token!,
-    };
-    return await dio.get(
-      endPoint,
-      queryParameters: query,
-    );
+  final baseUrl = "https://www.googleapis.com/books/v1/";
+
+  ApiService(this._dio);
+
+  Future<Map<String, dynamic>> get({required String endPoint}) async {
+    var response = await _dio.get('$baseUrl$endPoint');
+    return response.data;
   }
+}
+  // static Future<Response> getData({
+  //   required String endPoint,
+  //   Map<String, dynamic>? query,
+  //   String lang = 'en',
+  //   //  String? token,
+  // }) async {
+  //   dio.options.headers = {
+  //     "Content-Type": "application/json",
+  //     "lang": lang,
+  //     // "Authorization":token!,
+  //   };
+  //   return await dio.get(
+  //     endPoint,
+  //     queryParameters: query,
+  //   );
+  // }
 
   // static Future<Response> postData({
   //   required String url,
@@ -67,4 +70,3 @@ class ApiService {
   //   );
 
   // }
-}

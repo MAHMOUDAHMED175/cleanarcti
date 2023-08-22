@@ -1,10 +1,12 @@
 import 'package:cleanarcti/Features/home/domain/entities/book_entity.dart';
 import 'package:equatable/equatable.dart';
+
 import 'access_info.dart';
 import 'sale_info.dart';
 import 'search_info.dart';
 import 'volume_info.dart';
-class BookModel extends BookEntity with EquatableMixin{
+
+class BookModel extends BookEntity with EquatableMixin {
   final String? kind;
   final String? id;
   final String? etag;
@@ -14,7 +16,7 @@ class BookModel extends BookEntity with EquatableMixin{
   final AccessInfo? accessInfo;
   final SearchInfo? searchInfo;
 
-   BookModel({
+  BookModel({
     this.kind,
     this.id,
     this.etag,
@@ -24,12 +26,13 @@ class BookModel extends BookEntity with EquatableMixin{
     this.accessInfo,
     this.searchInfo,
   }) : super(
+    url: volumeInfo?.previewLink,
     bookId: id!,
-    image: volumeInfo?.imageLinks?.thumbnail??'',
-  authorName: volumeInfo?.authors?.first??'No Name',
-  price: 0.0,
-  categories: volumeInfo!.categories!.first,
-  title: volumeInfo.title!
+            image: volumeInfo?.imageLinks?.thumbnail ?? '',
+            authorName: volumeInfo?.authors?.first ?? 'No Name',
+            price: 0.0,
+            categories: volumeInfo!.title,
+            title: volumeInfo.title!,
   );
 
   factory BookModel.fromJson(Map<String, dynamic> json) => BookModel(
